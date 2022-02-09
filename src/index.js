@@ -11,6 +11,16 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+app.get('/', function(req, res){
+  if(!req.session.pageCountByCurrentUserOrAnyNameYouWant)
+    req.session.pageCountByCurrentUserOrAnyNameYouWant = 0;
+  req.session.pageCountByCurrentUserOrAnyNameYouWant++;
+  res.send({
+    pageCount: req.session.pageCountByCurrentUserOrAnyNameYouWant
+  });
+});
+
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
